@@ -99,3 +99,81 @@ h3 { font-size: 15px; margin: 0 0 10px; }
 .audit-card p { margin: 8px 0; color: #5e6c69; font-size: 12px; }
 .audit-card small { color: #8b9794; font-size: 11px; }
 .empty-state { padding: 80px; text-align: center; color: #71807d; }
+.link-btn { border: 0; background: none; color: #1c5a60; cursor: pointer; padding: 0 0 0 8px; text-decoration: underline; }
+
+/* 标准版本卡片 */
+.version-card { display: flex; justify-content: space-between; gap: 18px; align-items: center; background: #eef5f3; border: 1px solid #cfe0db; border-radius: 5px; padding: 14px 16px; margin-bottom: 16px; }
+.version-card strong { display: block; font-size: 15px; margin: 4px 0; color: #15434a; }
+.version-card small { display: block; color: #667572; font-size: 11px; line-height: 1.6; }
+.assign-standard { display: flex; gap: 10px; align-items: center; }
+.standard-preview { color: #667572; font-size: 12px; margin: 12px 0 0; display: flex; gap: 8px; align-items: center; }
+
+.standard-groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.standard-group { background: white; border: 1px solid #dbe2df; border-radius: 5px; padding: 16px; }
+.standard-group > header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid #e7ecea; padding-bottom: 10px; margin-bottom: 12px; }
+.standard-group h3 { margin: 0 0 3px; font-size: 15px; }
+.standard-group header small { color: #8b9895; font-size: 11px; }
+.standard-version { border: 1px solid #e2e8e5; border-radius: 4px; padding: 12px; margin-bottom: 10px; }
+.standard-version.latest { border-color: #9cc7bd; background: #f3faf8; }
+.sv-head { display: flex; gap: 8px; align-items: center; }
+.sv-head strong { font-size: 13px; }
+.sv-head small { color: #8b9794; font-size: 11px; }
+.standard-version p { margin: 8px 0; color: #55635f; font-size: 12px; line-height: 1.6; }
+.sv-items { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.sv-items li { display: grid; grid-template-columns: 90px 130px 1fr; gap: 8px; font-size: 11px; color: #5f6d6a; }
+.sv-items b { color: #15434a; font-weight: 600; }
+.sv-scope { color: #2f6b5f !important; }
+
+/* 冲突与证据 */
+.conflict-banner { display: grid; gap: 6px; border: 1px solid #e5c57f; background: #fdf6e4; border-radius: 5px; padding: 12px 14px; margin-bottom: 14px; font-size: 12px; color: #6f5f30; }
+.conflict-banner > div { display: flex; gap: 8px; margin-top: 4px; }
+.disposition-block { display: block; margin: 12px 0 18px; font-size: 12px; color: #63726f; }
+.disposition-block > span { display: block; margin-bottom: 6px; }
+.limit-cell { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+.evidence-panel { margin-top: 18px; display: block; }
+.evidence-head { display: flex; justify-content: space-between; align-items: baseline; }
+.evidence-head span { color: #7b8986; font-size: 11px; }
+.evidence-list { display: flex; flex-wrap: wrap; gap: 7px; margin: 10px 0; }
+.evidence-add { display: flex; gap: 8px; align-items: center; }
+
+/* 复测 */
+.retest-panel { border: 1px solid #dbe2df; border-radius: 5px; padding: 16px; margin-top: 18px; background: #fcfdfc; }
+.retest-list { display: grid; gap: 8px; margin: 12px 0; }
+.retest-list article { border: 1px solid #e3e9e6; border-radius: 4px; padding: 10px 12px; }
+.retest-list article.failed { border-color: #e0a09a; background: #fdf3f2; }
+.retest-list article.passed { border-color: #9cc7bd; background: #f1faf7; }
+.retest-list header { display: flex; justify-content: space-between; align-items: center; }
+.retest-list p { margin: 7px 0 4px; font-size: 12px; color: #55635f; }
+.retest-list small { color: #83908c; font-size: 11px; }
+.next-retest { color: #b44137 !important; font-weight: 600; display: inline-flex; gap: 8px; align-items: center; }
+.retest-form { display: grid; gap: 10px; margin-top: 12px; padding-top: 12px; border-top: 1px dashed #d7dedb; }
+.retest-row { display: flex; gap: 14px; align-items: center; font-size: 12px; color: #5f6d6a; }
+
+/* 冲突修订列表 */
+.conflict-list { margin-top: 22px; display: grid; gap: 10px; }
+.conflict-list article { border: 1px solid #e5c57f; background: #fdf8eb; border-radius: 5px; padding: 12px 14px; }
+.conflict-list header { display: flex; gap: 10px; align-items: center; }
+.conflict-list header small { color: #8a7b4e; font-size: 11px; }
+.conflict-list p { font-size: 12px; color: #6f6234; margin: 8px 0; line-height: 1.7; }
+.conflict-list dl { margin: 8px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; font-size: 12px; }
+.conflict-list dt { grid-column: 1 / -1; color: #15434a; font-weight: 600; margin-top: 6px; }
+.conflict-list dd { margin: 0; color: #5f6d6a; }
+
+/* 修订链 */
+.revision-trail { grid-column: 1 / -1; background: white; border: 1px solid #dbe2df; border-radius: 5px; padding: 18px 20px; }
+.revision-item { border-left: 3px solid #c3cfcb; padding: 10px 14px; margin-bottom: 8px; background: #f8faf9; border-radius: 0 4px 4px 0; }
+.revision-item.kind-冲突修订 { border-left-color: #d9aa42; background: #fdf8eb; }
+.revision-item.kind-复测失败, .revision-item.kind-停用隔离 { border-left-color: #c3483f; background: #fdf3f2; }
+.revision-item.kind-复测通过, .revision-item.kind-恢复开放 { border-left-color: #3f967f; background: #f0faf6; }
+.revision-item.kind-标准回填, .revision-item.kind-待复核登记, .revision-item.kind-标准指派 { border-left-color: #4a7f9e; background: #f0f6fa; }
+.revision-meta { display: flex; gap: 10px; align-items: center; }
+.revision-meta small { color: #83908c; font-size: 11px; }
+.revision-item p { margin: 6px 0 3px; font-size: 12px; color: #54625f; line-height: 1.7; }
+.revision-standard { color: #2f6b5f; font-size: 11px; }
+
+.kanban-wide { grid-template-columns: repeat(6, minmax(180px, 1fr)); overflow-x: auto; }
+.kanban-column article .card-standard { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+.publish-form { display: grid; gap: 12px; font-size: 12px; color: #63726f; }
+.publish-form label { display: grid; gap: 6px; }
+.publish-row { display: grid; grid-template-columns: 140px 1fr; gap: 8px; }
+
