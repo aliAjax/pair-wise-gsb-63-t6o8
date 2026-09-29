@@ -1,5 +1,6 @@
 import axios from 'axios'
-import type { InspectionDraft, InspectionRecord } from '../types'
+import type { InspectionDraft, InspectionRecord, StandardVersion } from '../types'
+import { buildItemsFromStandard } from './standards'
 
 const client = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
@@ -16,7 +17,11 @@ export async function loadInspectionSnapshot(fallback: InspectionRecord[]): Prom
   }
 }
 
-export function createOfflineInspection(draft: InspectionDraft): InspectionRecord {
+/**
+ * 新任务按开始时刻的已发布标准版本执行，标准内容（限值）冻结进任务快照。
+ * 之后管理员再发布新标准，进行中的任务仍按开始时那版判定。
+ */
+export function createOfflineInspection(draft: InspectionDraft, standard: StandardVersion): InspectionRecord {
   const now = new Date().toISOString()
   return {
     id: `INS-${Date.now().toString().slice(-10)}`,
@@ -24,15 +29,18 @@ export function createOfflineInspection(draft: InspectionDraft): InspectionRecor
     inspectedAt: now,
     status: '待检验',
     stopped: false,
-    items: [
-      { id: 'wear', name: '结构磨损', result: '正常', reading: '待录入', limit: '≤ 5.0 mm', note: '' },
-      { id: 'noise', name: '运行异响', result: '正常', reading: '待录入', limit: '≤ 75 dB', note: '' },
-      { id: 'brake', name: '制动装置', result: '正常', reading: '待录入', limit: '制动可靠', note: '' },
-      { id: 'lock', name: '锁止机构', result: '正常', reading: '待录入', limit: '无可见间隙', note: '' },
-      { id: 'safety', name: '安全装置', result: '正常', reading: '待录入', limit: '动作可靠', note: '' }
-    ],
-    evidenceCount: 0,
+    items: buildItemsFromStandard(standard),
+    evidence: [],
+    disposition: '',
+    standardVersion: standard.version,
+    standardLabel: standard.label,
+    standardFrozenAt: now,
+    reviewNote: '',
+    retests: [],
+    nextRetestDate: null,
+    revision: 1,
     version: 1,
+    lastSavedBy: draft.inspector,
     createdAt: now,
     updatedAt: now
   }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { NDialogProvider, NMessageProvider } from 'naive-ui'
 import { useInspectionStore } from './stores/inspection'
 import { connectLiveUpdates } from './services/api'
 
@@ -9,8 +10,9 @@ const store = useInspectionStore()
 let disconnect: () => void = () => undefined
 
 const pageTitle = computed(() => {
+  if (route.name === 'standards') return '检验标准发布'
   if (route.name === 'defects') return '缺陷处置看板'
-  if (route.name === 'audit') return '检验审计'
+  if (route.name === 'audit') return '检验审计与判定依据'
   if (route.name === 'record') return '检验任务详情'
   return '日常检验总览'
 })
@@ -33,8 +35,9 @@ onUnmounted(() => disconnect())
       </div>
       <nav>
         <RouterLink to="/"><span>01</span>检验总览</RouterLink>
-        <RouterLink to="/defects"><span>02</span>缺陷处置</RouterLink>
-        <RouterLink to="/audit"><span>03</span>操作审计</RouterLink>
+        <RouterLink to="/standards"><span>02</span>标准发布</RouterLink>
+        <RouterLink to="/defects"><span>03</span>缺陷处置</RouterLink>
+        <RouterLink to="/audit"><span>04</span>判定依据审计</RouterLink>
       </nav>
       <div class="sidebar-status">
         <i />
@@ -55,7 +58,11 @@ onUnmounted(() => disconnect())
           <strong>周宁</strong>
         </div>
       </header>
-      <RouterView />
+      <NMessageProvider>
+        <NDialogProvider>
+          <RouterView />
+        </NDialogProvider>
+      </NMessageProvider>
     </main>
   </div>
 </template>
